@@ -16,10 +16,9 @@ exports.saveuser = (...regdata) => {
   conn.query("insert into user values('0',?,?,?,?,?)", [...regdata]);
   return true;
 };
-
-exports.validateUserFromDB = (username, password) => {
+exports.validateUserWithPassword = (username, password) => {
   return new Promise((resolve, reject) => {
-    const sql = "SELECT * FROM user WHERE username = ? and password = ?";
+    const sql = "SELECT * FROM user WHERE username = ? AND password = ?";
     conn.query(sql, [username, password], (err, result) => {
       if (err) reject(err);
       else resolve(result);

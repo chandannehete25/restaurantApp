@@ -22,7 +22,7 @@ const model = require("../models/regModel.js");
 
 class RegService{
     acceptregdata(name,email,contact,oldusername,newusername,password){
-        console.log("data recive");
+        console.log("data receive");
         console.log(name);
         if(oldusername==newusername)
         {
@@ -34,4 +34,6 @@ class RegService{
         }
     }
 }
+
+
 module.exports = new RegService();
