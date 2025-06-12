@@ -10,21 +10,26 @@
     />
     
     <style>
+      .navbar {
+        background-color: #000 !important;
+      }
+
       .navbar-brand {
         font-weight: bold;
-        color: #d32f2f !important; /* red */
+        color: #ff4d4d !important;
       }
 
       .nav-link {
         font-weight: 500;
+        color: white !important;
       }
 
       .nav-link:hover {
-        color: #d32f2f !important;
+        color: #ff4d4d !important;
       }
 
       .login-link {
-        color: #d32f2f !important;
+        color: #ff4d4d !important;
         font-weight: bold;
       }
 
@@ -34,12 +39,11 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top border-bottom shadow-sm">
       <div class="container">
-        <!-- Logo / Brand -->
-        <a class="navbar-brand" href="#">Foodie's Kitchen</a>
+        <a class="navbar-brand" href="#">SanChan's Kitchen</a>
 
-        <!-- Toggler -->
         <button
           class="navbar-toggler"
           type="button"
@@ -52,7 +56,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
