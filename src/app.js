@@ -6,6 +6,7 @@ let bodyparser = require("body-parser");
 let router = require("./routes/regroutes.js");  // Adjusted to local path
 let conn = require("./config/db.js");
 const adminRoutes = require("./routes/adminRoutes.js");
+const menuRoutes = require("./routes/menuRoutes.js");
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -20,7 +21,9 @@ app.use("/", router);
 
 app.use("/", adminRoutes);
 
-app.use(express.static("public"));
+app.use("/menu", menuRoutes);
 
+app.use(express.static("public"));
+app.use('/uploads', express.static('public/uploads'));
 module.exports = app;
  

@@ -1,4 +1,4 @@
- body {
+body {
     font-family: Arial, sans-serif;
     background-color: #f3f3f3;
     text-align: center;
@@ -33,5 +33,3 @@
     display: inline-block;
     margin-top: 15px;
   }
-   
-
