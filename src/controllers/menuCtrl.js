@@ -8,7 +8,7 @@ exports.addMenuPage = (req, res) => {
 
 exports.addMenu = (req, res) => {
   const { item_name, category_id, price, description } = req.body;
-  const image = req.file ? req.file.filename : null;
+  const image = req.file ? req.file.filename : null;                   //Grab file name if an image was uploade
 
   const data = { item_name, category_id, price, description, image };
 
@@ -53,7 +53,7 @@ exports.viewMenus = (req, res) => {
   exports.updateMenu = (req, res) => {
     const menuId = req.params.id;
     const { item_name, category_id, price, description } = req.body;
-    const image = req.file ? req.file.filename : req.body.old_image;
+    const image = req.file ? req.file.filename : req.body.old_image;     // Keep old image if no new image uploaded
   
     const updatedData = { item_name, category_id, price, description, image };
   
@@ -73,5 +73,17 @@ exports.viewMenus = (req, res) => {
       .catch((err) => {
         console.error(err);
         res.send("Error deleting menu item");
+      });
+  };
+
+  exports.searchMenusAjax = (req, res) => {
+    const query = req.query.q || "";
+    menuModel.getMenus(query)
+      .then(menus => {
+        res.render("partials/menuTable", { menus });
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Search failed");
       });
   };

@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 let RegService = require("../services/regService.js");
 const regmodel = require("../models/regModel.js");
-//const { acceptregdata } = require("../services/regService.js");
+
 exports.regCtrl = (req, res) => {
   res.render("home.ejs"); // This loads views/nav.ejs
 };
@@ -26,7 +26,7 @@ exports.registerUser = (req, res) => {
     email,
     contact,
     username,
-    password // plain password (⚠️ insecure)
+    password 
   };
 
   regmodel.insertUser(userData)
@@ -50,7 +50,7 @@ exports.validateUser = (req, res) => {
   regmodel.validateUserWithPassword(username, password)
     .then((result) => {
       if (result.length > 0) {
-        req.session.uid = result[0].id;
+        req.session.uid = result[0].id;       //store user ID in session
         res.render("adminDashboard.ejs" );
       } else {
         res.render("login.ejs", { msg: "Invalid username or password" });
@@ -60,7 +60,9 @@ exports.validateUser = (req, res) => {
       console.error("Login Error:", err);
       res.render("error.ejs", { error: err });
     });
-};exports.validateUserWithPassword = (username, password) => {
+};
+
+exports.validateUserWithPassword = (username, password) => {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM user WHERE username = ? AND password = ?";
     conn.query(sql, [username, password], (err, result) => {

@@ -3,36 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>View Menus</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
     }
+
     .main-content {
-      margin-left: 250px; /* Width of the sidebar */
-      padding: 20px;
+      margin-left: 250px; /* Adjust if sidebar width changes */
+      padding: 30px;
     }
+
     .search-box {
-      max-width: 500px;
-      margin: 30px auto;
+      max-width: 600px;
+      margin: 20px auto;
     }
+
+    .table-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
     table th {
-      background-color: #ff3c00;
+      background-color: #343a40;
       color: white;
     }
+
     .table td, .table th {
       vertical-align: middle;
     }
-    .action-icons i {
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    .action-icons .edit { color: green; }
-    .action-icons .delete { color: red; }
 
-    .table-wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
+    .btn-sm {
+      padding: 2px 10px;
     }
   </style>
 </head>
@@ -40,51 +42,50 @@
   <%- include("sidebar.ejs") %>
 
   <div class="main-content">
-    <div class="search-box">
-      <form method="GET" action="/menu/view">
-        <input type="text" name="search" class="form-control" placeholder="🔍 Search menu..." value="<%= search %>">
+    <div class="search-box text-center">
+      <form method="GET" action="/menu/view" class="d-flex justify-content-center">
+        <input type="text" name="search" class="form-control w-50" placeholder="Search menu..." value="<%= search %>">
+        <button class="btn btn-primary ms-2" type="submit">Search</button>
       </form>
     </div>
 
-    <div class="card table-wrapper">
-      <div class="card-body">
-        <h4 class="card-title text-center mb-4">View Menus</h4>
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover text-center">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Menu Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if (menus.length > 0) { %>
-                <% menus.forEach(menu => { %>
-                  <tr>
-                    <td><%= menu.id %></td>
-                    <td><%= menu.item_name %></td>
-                    <td><%= menu.category %></td>
-                    <td>₹<%= menu.price %></td>
-                    <td><%= menu.description %></td>
-                    <td class="action-icons">
-                      <a href="/menu/edit/<%= menu.id %>"><i class="edit">&#9998;</i></a>
-                      &nbsp;&nbsp;
-                      <a href="/menu/delete/<%= menu.id %>" onclick="return confirm('Are you sure?')"><i class="delete">&#128465;</i></a>
-                    </td>
-                  </tr>
-                <% }) %>
-              <% } else { %>
+    <div class="table-container">
+      <h3 class="text-center my-4">View Menus</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Menu Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (menus.length > 0) { %>
+              <% menus.forEach(menu => { %>
                 <tr>
-                  <td colspan="6">No menu items found.</td>
+                  <td><%= menu.id %></td>
+                  <td><%= menu.item_name %></td>
+                  <td><%= menu.category %></td>
+                  <td>₹<%= menu.price %></td>
+                  <td><%= menu.description %></td>
+                  <td>
+                    <a href="/menu/edit/<%= menu.id %>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/menu/delete/<%= menu.id %>" class="btn btn-danger btn-sm"
+                      onclick="return confirm('Are you sure you want to delete this menu item?');">Delete</a>
+                  </td>
                 </tr>
-              <% } %>
-            </tbody>
-          </table>
-        </div>
+              <% }) %>
+            <% } else { %>
+              <tr>
+                <td colspan="6">No menu items found.</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -1,279 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>SanChan's Kitchen</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SanChan's Kitchen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Bootstrap CSS + Font Awesome -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS + Font Awesome -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* ---------- global ---------- */
-    html{scroll-behavior:smooth}
-    section{padding:80px 0}
-    .navbar-brand{font-weight:bold;color:#ff3366}
+    <style>
+      /* ---------- global ---------- */
+      html {
+        scroll-behavior: smooth;
+      }
+      section {
+        padding: 80px 0;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: #ff3366;
+      }
 
-    /* ---------- hero ---------- */
-    #home{
-      background:url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
-      height:100vh;color:#fff;text-align:center;
-      display:flex;flex-direction:column;justify-content:center;align-items:center}
-    #home h1{font-size:48px;font-weight:700}
+      /* ---------- hero ---------- */
+      #home {
+        background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092")
+          center/cover no-repeat;
+        height: 100vh;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #home h1 {
+        font-size: 48px;
+        font-weight: 700;
+      }
 
-    /* ---------- about ---------- */
-    .story-text h6{text-transform:uppercase;font-weight:600;color:#888}
-    .story-text h2{font-weight:700;font-size:36px;margin:20px 0}
-    .story-section{background:#fff}
-    .story-img img {width: 100%; max-width: 500px; border-radius: 12px; object-fit: cover;}
+      /* ---------- about ---------- */
+      .story-text h6 {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #888;
+      }
+      .story-text h2 {
+        font-weight: 700;
+        font-size: 36px;
+        margin: 20px 0;
+      }
+      .story-section {
+        background: #fff;
+      }
+      .story-img img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
 
-    /* ---------- menu grid ---------- */
-    .menu-section{text-align:center}
-    .menu-item{position:relative;overflow:hidden;border-radius:8px;cursor:pointer;transition:.3s}
-    .menu-item img{width:100%;height:250px;object-fit:cover;transition:.3s}
-    .menu-item:hover img{transform:scale(1.1)}
-    .menu-overlay{
-      position:absolute;bottom:0;width:100%;padding:15px;
-      background:rgba(0,0,0,.6);color:#fff;display:flex;justify-content:space-between;align-items:center}
-    .menu-overlay h5{margin:0;font-weight:600;font-size:18px}
-    .menu-overlay p{margin:0;font-size:12px;text-transform:uppercase;color:#ccc}
-    .menu-price{font-size:18px;font-weight:700}
+      /* ---------- menu grid ---------- */
+      .menu-section {
+        text-align: center;
+      }
+      .menu-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .menu-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s;
+      }
+      .menu-item:hover img {
+        transform: scale(1.1);
+      }
+      .menu-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .menu-overlay h5 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .menu-overlay p {
+        margin: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #ccc;
+      }
+      .menu-price {
+        font-size: 18px;
+        font-weight: 700;
+      }
 
-    /* ---------- chefs ---------- */
-    .chefs-section{text-align:center}
-    .chef-box{position:relative;overflow:hidden;border-radius:5px;transition:.3s;margin-bottom:30px}
-    .chef-box:hover{transform:translateY(-5px)}
-    .chef-box img{width:100%}
-    .chef-overlay{
-      position:absolute;inset:0;background:rgba(0,0,0,.7);
-      display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s}
-    .chef-box:hover .chef-overlay{opacity:1}
-    .chef-overlay p{color:#fff;font-size:16px;font-weight:500}
+      /* ---------- chefs ---------- */
+      .chefs-section {
+        text-align: center;
+      }
+      .chef-box {
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+        transition: 0.3s;
+        margin-bottom: 30px;
+      }
+      .chef-box:hover {
+        transform: translateY(-5px);
+      }
+      .chef-box img {
+        width: 100%;
+      }
+      .chef-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .chef-box:hover .chef-overlay {
+        opacity: 1;
+      }
+      .chef-overlay p {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+      }
 
-    /* ---------- contact ---------- */
-    .contact-section{background:#fff;padding:60px 15px}
-    .contact-title{font-size:30px;font-weight:700;margin-bottom:20px}
-    .form-control{border:none;border-bottom:1px solid #ccc;border-radius:0;box-shadow:none}
-    .form-control:focus{border-bottom:2px solid #d9534f;box-shadow:none}
-    .send-btn{background:#d9534f;color:#fff;font-weight:700;border:none;padding:12px 30px;width:100%;margin-top:20px}
-    iframe{width:100%;height:350px;border:0;border-radius:4px}
-    @media(max-width:767px){.contact-section .row>div{margin-bottom:30px}}
+      /* ---------- contact ---------- */
+      .contact-section {
+        background: #fff;
+        padding: 60px 15px;
+      }
+      .contact-title {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .form-control {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .form-control:focus {
+        border-bottom: 2px solid #d9534f;
+        box-shadow: none;
+      }
+      .send-btn {
+        background: #d9534f;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        padding: 12px 30px;
+        width: 100%;
+        margin-top: 20px;
+      }
+      iframe {
+        width: 100%;
+        height: 350px;
+        border: 0;
+        border-radius: 4px;
+      }
+      @media (max-width: 767px) {
+        .contact-section .row > div {
+          margin-bottom: 30px;
+        }
+      }
 
-    /* ---------- footer ---------- */
-    .footer{background:#fff;padding:60px 0;animation:fadeIn 1.2s}
-    .footer h5{font-weight:700;margin-bottom:15px}
-    .footer p{color:#666;margin-bottom:10px}
-    .open-hours{background:url('https://themewagon.github.io/eatery/img/footer-open-hours.jpg') center/cover;border-radius:15px;padding:20px;color:black; transition:.4s}
-    .open-hours:hover{transform:scale(1.03)}
-    .social-icons a{color:#333;font-size:18px;margin-right:10px;transition:.3s}
-    .social-icons a:hover{color:#d9534f}
-    .copy-right{font-size:14px;color:#777;margin-top:20px}
-    @keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-  </style>
-</head>
-<body>
-
-<!-- ========= Navbar ========= -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">SanChan's Kitchen</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
-        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link text-danger fw-bold" href="/signin">Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- ========= Hero ========= -->
-<section id="home">
-  <h1>Welcome to SanChan's Kitchen</h1>
-  <p>Your Smart Restaurant Billing Solution</p>
-  <a href="#about" class="btn btn-warning mt-3">Explore More</a>
-</section>
-
-<!-- ========= About ========= -->
-<section id="about" class="story-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 story-text">
-        <h6>Read Our Story</h6>
-        <h2>We've been Making Delicious Foods Since 1999</h2>
-        <p>We serve tradition with a twist, delighting guests with unforgettable dishes and warm hospitality.</p>
-        <p>Our system powers smart restaurants—efficient billing, menu management, and seamless service.</p>
+      /* ---------- footer ---------- */
+      .footer {
+        background: #fff;
+        padding: 60px 0;
+        animation: fadeIn 1.2s;
+      }
+      .footer h5 {
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .footer p {
+        color: #666;
+        margin-bottom: 10px;
+      }
+      .open-hours {
+        background: url("https://themewagon.github.io/eatery/img/footer-open-hours.jpg")
+          center/cover;
+        border-radius: 15px;
+        padding: 20px;
+        color: black;
+        transition: 0.4s;
+      }
+      .open-hours:hover {
+        transform: scale(1.03);
+      }
+      .social-icons a {
+        color: #333;
+        font-size: 18px;
+        margin-right: 10px;
+        transition: 0.3s;
+      }
+      .social-icons a:hover {
+        color: #d9534f;
+      }
+      .copy-right {
+        font-size: 14px;
+        color: #777;
+        margin-top: 20px;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========= Navbar ========= -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">SanChan's Kitchen</a>
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger fw-bold" href="/signin">Login</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-6 story-img text-center"><img src="food.jpg" alt="Chef"></div>
-    </div>
-  </div>
-</section>
+    </nav>
 
-<!-- ========= Menu ========= -->
-<section id="menu" class="menu-section bg-light">
-    <div class="container">
-      <h2>Our Menus</h2>
-      <p>Tea Time &amp; Dining</p>
-      <div class="row mt-4 gy-4">
-        <!-- menu item 1 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image1.jpg" alt="American Breakfast">
-            <div class="menu-overlay">
-              <div><h5>American Breakfast</h5><p>Tomato / Eggs / Sausage</p></div>
-              <div class="menu-price">$25</div>
+    <!-- ========= Hero ========= -->
+    <section id="home">
+      <h1>Welcome to SanChan's Kitchen</h1>
+      <p>Your Smart Restaurant Billing Solution</p>
+      <a href="#about" class="btn btn-warning mt-3">Explore More</a>
+    </section>
+
+    <!-- ========= About ========= -->
+    <section id="about" class="story-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 story-text">
+            <h6>Read Our Story</h6>
+            <h2>We've been Making Delicious Foods Since 1999</h2>
+            <p>
+              We serve tradition with a twist, delighting guests with
+              unforgettable dishes and warm hospitality.
+            </p>
+            <p>
+              Our system powers smart restaurants—efficient billing, menu
+              management, and seamless service.
+            </p>
+          </div>
+          <div class="col-md-6 story-img text-center">
+            <img src="food.jpg" alt="Chef" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= Menu ========= -->
+    <section id="menu" class="menu-section bg-light">
+      <div class="container">
+        <h2>Our Menus</h2>
+        <p>Tea Time &amp; Dining</p>
+        <div class="row mt-4 gy-4">
+          <!-- menu item 1 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image1.jpg" alt="American Breakfast" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>American Breakfast</h5>
+                  <p>Tomato / Eggs / Sausage</p>
+                </div>
+                <div class="menu-price">$25</div>
+              </div>
+            </div>
+          </div>
+          <!-- menu item 2 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image2.jpg" alt="Pancake Set" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>Pancake Set</h5>
+                  <p>Strawberry / Orange</p>
+                </div>
+                <div class="menu-price">$30</div>
+              </div>
+            </div>
+          </div>
+          <!-- menu item 3 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image3.jpg" alt="French Toast" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>French Toast</h5>
+                  <p>Honey / Fruits</p>
+                </div>
+                <div class="menu-price">$18</div>
+              </div>
+            </div>
+          </div>
+          <!-- menu item 4 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image4.jpg" alt="Veggie Delight" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>Veggie Delight</h5>
+                  <p>Broccoli / Carrot / Beans</p>
+                </div>
+                <div class="menu-price">$22</div>
+              </div>
+            </div>
+          </div>
+          <!-- menu item 5 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image5.jpg" alt="Grilled Sandwich" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>Grilled Sandwich</h5>
+                  <p>Cheese / Veggies</p>
+                </div>
+                <div class="menu-price">$15</div>
+              </div>
+            </div>
+          </div>
+          <!-- menu item 6 -->
+          <div class="col-md-4 col-sm-6">
+            <div class="menu-item">
+              <img src="image6.jpg" alt="Margarita Pizza" />
+              <div class="menu-overlay">
+                <div>
+                  <h5>Margarita Pizza</h5>
+                  <p>Cheese / Basil</p>
+                </div>
+                <div class="menu-price">$28</div>
+              </div>
             </div>
           </div>
         </div>
-        <!-- menu item 2 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image2.jpg" alt="Pancake Set">
-            <div class="menu-overlay">
-              <div><h5>Pancake Set</h5><p>Strawberry / Orange</p></div>
-              <div class="menu-price">$30</div>
-            </div>
-          </div>
-        </div>
-        <!-- menu item 3 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image3.jpg" alt="French Toast">
-            <div class="menu-overlay">
-              <div><h5>French Toast</h5><p>Honey / Fruits</p></div>
-              <div class="menu-price">$18</div>
-            </div>
-          </div>
-        </div>
-        <!-- menu item 4 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image4.jpg" alt="Veggie Delight">
-            <div class="menu-overlay">
-              <div><h5>Veggie Delight</h5><p>Broccoli / Carrot / Beans</p></div>
-              <div class="menu-price">$22</div>
-            </div>
-          </div>
-        </div>
-        <!-- menu item 5 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image5.jpg" alt="Grilled Sandwich">
-            <div class="menu-overlay">
-              <div><h5>Grilled Sandwich</h5><p>Cheese / Veggies</p></div>
-              <div class="menu-price">$15</div>
-            </div>
-          </div>
-        </div>
-        <!-- menu item 6 -->
-        <div class="col-md-4 col-sm-6">
-          <div class="menu-item">
-            <img src="image6.jpg" alt="Margarita Pizza">
-            <div class="menu-overlay">
-              <div><h5>Margarita Pizza</h5><p>Cheese / Basil</p></div>
-              <div class="menu-price">$28</div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-<!-- ========= Gallery / Chefs ========= -->
-<section id="gallery" class="chefs-section">
-  <div class="container">
-    <h2>Meet our Chefs</h2>
-    <p class="subtitle">They are nice &amp; friendly</p>
-    <div class="row justify-content-center mt-4">
-      <div class="col-md-4">
-        <div class="chef-box">
-          <img src="https://themewagon.github.io/eatery/images/team-image1.jpg" alt="Chef 1">
-          <div class="chef-overlay"><p>"Love is our secret ingredient."</p></div>
-        </div>
-        <div class="chef-info"><h5>New Catherine</h5><span>Kitchen Officer</span></div>
-      </div>
-      <div class="col-md-4">
-        <div class="chef-box">
-          <img src="https://themewagon.github.io/eatery/images/team-image2.jpg" alt="Chef 2">
-          <div class="chef-overlay"><p>"Cooking is an art of patience."</p></div>
-        </div>
-        <div class="chef-info"><h5>Lindsay Perlen</h5><span>Owner &amp; Manager</span></div>
-      </div>
-      <div class="col-md-4">
-        <div class="chef-box">
-          <img src="https://themewagon.github.io/eatery/images/team-image3.jpg" alt="Chef 3">
-          <div class="chef-overlay"><p>"Pizza is life's perfect circle."</p></div>
-        </div>
-        <div class="chef-info"><h5>Isabella Grace</h5><span>Pizza Specialist</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========= Contact ========= -->
-<section id="contact" class="contact-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.148334449987!2d100.56850747480166!3d13.761665897249539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ed9e2c680d5%3A0xc5fd93e3090cb44b!2sDHL%20Supply%20Chain!5e0!3m2!1sen!2sth!4v1689674329990!5m2!1sen!2sth" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="col-md-6">
-        <h3 class="contact-title">Contact Us</h3>
-        <form>
-          <div class="row g-3">
-            <div class="col-md-6"><input type="text" class="form-control" placeholder="Full name" required></div>
-            <div class="col-md-6"><input type="email" class="form-control" placeholder="Email address" required></div>
-            <div class="col-12"><input type="text" class="form-control" placeholder="Subject" required></div>
-            <div class="col-12"><textarea class="form-control" rows="4" placeholder="Tell about your project" required></textarea></div>
-            <div class="col-12"><button class="send-btn" type="submit">Send Message</button></div>
+    <!-- ========= Gallery / Chefs ========= -->
+    <section id="gallery" class="chefs-section">
+      <div class="container">
+        <h2>Meet our Chefs</h2>
+        <p class="subtitle">They are nice &amp; friendly</p>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-4">
+            <div class="chef-box">
+              <img
+                src="https://themewagon.github.io/eatery/images/team-image1.jpg"
+                alt="Chef 1"
+              />
+              <div class="chef-overlay">
+                <p>"Love is our secret ingredient."</p>
+              </div>
+            </div>
+            <div class="chef-info">
+              <h5>New Catherine</h5>
+              <span>Kitchen Officer</span>
+            </div>
           </div>
-        </form>
+          <div class="col-md-4">
+            <div class="chef-box">
+              <img
+                src="https://themewagon.github.io/eatery/images/team-image2.jpg"
+                alt="Chef 2"
+              />
+              <div class="chef-overlay">
+                <p>"Cooking is an art of patience."</p>
+              </div>
+            </div>
+            <div class="chef-info">
+              <h5>Lindsay Perlen</h5>
+              <span>Owner &amp; Manager</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="chef-box">
+              <img
+                src="https://themewagon.github.io/eatery/images/team-image3.jpg"
+                alt="Chef 3"
+              />
+              <div class="chef-overlay">
+                <p>"Pizza is life's perfect circle."</p>
+              </div>
+            </div>
+            <div class="chef-info">
+              <h5>Isabella Grace</h5>
+              <span>Pizza Specialist</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ========= Footer ========= -->
-<footer class="footer">
-  <div class="container">
-    <div class="row text-center text-md-start">
-      <div class="col-md-3 mb-4">
-        <h5>Find us</h5>
-        <p>123 Nulla A Cursus Rhoncus</p><p>Augue Sem Viverra 10870</p><p>Id Ultricies Sapien</p>
-      </div>
-      <div class="col-md-3 mb-4">
-        <h5>Reservation</h5>
-        <p>090‑080‑0650 | 090‑070‑0430</p><p>info@company.com</p><p>LINE : eatery247</p>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="open-hours">
-          <h5>Open Hours</h5>
-          <p>Monday : <span class="text-light">Closed</span></p>
-          <p><strong>Tue – Fri</strong><br>7 AM – 9 PM</p>
-          <p><strong>Sat – Sun</strong><br>11 AM – 10 PM</p>
+    <!-- ========= Contact ========= -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.148334449987!2d100.56850747480166!3d13.761665897249539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ed9e2c680d5%3A0xc5fd93e3090cb44b!2sDHL%20Supply%20Chain!5e0!3m2!1sen!2sth!4v1689674329990!5m2!1sen!2sth"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div class="col-md-6">
+            <h3 class="contact-title">Contact Us</h3>
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Full name"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email address"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Subject"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Tell about your project"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="send-btn" type="submit">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div class="col-md-3 mb-4 text-center text-md-start">
-        <div class="social-icons mb-2">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-google"></i></a>
-        </div>
-        <div class="copy-right">
-          <p>&copy; 2025 SanChan's Kitchen</p><p>Design by TemplateMo</p><p>Distributed by ThemeWagon</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- ========= Footer ========= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <div class="col-md-3 mb-4">
+            <h5>Find us</h5>
+            <p>123 No A Course Rhoncus</p>
+            <p>Augue Sem Viverra 10870</p>
+            <p>That is the wisdom of revenge.</p>
+          </div>
+          <div class="col-md-3 mb-4">
+            <h5>Reservation</h5>
+            <p>090‑080‑0650 | 090‑070‑0430</p>
+            <p>info@company.com</p>
+            <p>LINE : eatery247</p>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="open-hours">
+              <h5>Open Hours</h5>
+              <p>Monday : <span class="text-light">Closed</span></p>
+              <p><strong>Tue – Fri</strong><br />7 AM – 9 PM</p>
+              <p><strong>Sat – Sun</strong><br />11 AM – 10 PM</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4 text-center text-md-start">
+            <div class="social-icons mb-2">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-google"></i></a>
+            </div>
+            <div class="copy-right">
+              <p>&copy; 2025 SanChan's Kitchen</p>
+              <p>Design by Sanika&Chandan</p>
+              <p>Distributed by Giris Techhub</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

@@ -9,4 +9,5 @@ router.get("/view", menuCtrl.viewMenus);
 router.get("/edit/:id", menuCtrl.editMenuPage);
 router.post("/update/:id", upload.single("image"), menuCtrl.updateMenu);
 router.get("/delete/:id", menuCtrl.deleteMenu);
+router.get("/search", menuCtrl.searchMenusAjax);
 module.exports = router;
