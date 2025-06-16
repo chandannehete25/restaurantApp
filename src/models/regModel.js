@@ -12,9 +12,16 @@ let conn = require("../config/db.js"); // your MySQL connection
 //   });
 // };
 
-exports.saveuser = (...regdata) => {
-  conn.query("insert into user values('0',?,?,?,?,?)", [...regdata]);
-  return true;
+exports.insertUser = (userData) => {
+  const { name, email, contact, username, password } = userData;
+
+  return new Promise((resolve, reject) => {
+    const sql = "INSERT INTO user VALUES ('0',?, ?, ?, ?, ?)";
+    conn.query(sql, [name, email, contact, username, password], (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
 };
 exports.validateUserWithPassword = (username, password) => {
   return new Promise((resolve, reject) => {
