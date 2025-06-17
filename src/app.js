@@ -9,6 +9,7 @@ const adminRoutes = require("./routes/adminRoutes.js");
 const menuRoutes = require("./routes/menuRoutes.js");
 const staffRoutes = require("./routes/staffRoute.js");
 const tableRoutes = require("./routes/tableRoutes");
+const diningRoutes = require('./routes/diningRoutes');
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -24,9 +25,11 @@ app.use("/", router);
 app.use("/", adminRoutes);
 
 app.use("/menu", menuRoutes);
-//app.use("/", staffRoutes);
+app.use("/", staffRoutes);
 app.use("/staffs", staffRoutes);
 app.use("/", tableRoutes);
+app.use('/', diningRoutes);
+
 app.use(express.static("public"));
 app.use('/uploads', express.static('public/uploads'));
 module.exports = app;

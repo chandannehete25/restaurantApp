@@ -75,15 +75,15 @@ exports.viewMenus = (req, res) => {
         res.send("Error deleting menu item");
       });
   };
-
-  exports.searchMenusAjax = (req, res) => {
-    const query = req.query.q || "";
-    menuModel.getMenus(query)
+  exports.searchMenus = (req, res) => {
+    const search = req.query.search || "";
+    menuModel.getMenus(search)
       .then(menus => {
-        res.render("partials/menuTable", { menus });
+        res.render("viewMenus.ejs", { menus, search, layout: false });
       })
       .catch(err => {
         console.error(err);
-        res.status(500).send("Search failed");
+        res.status(500).send("Error loading menus.");
       });
   };
+  

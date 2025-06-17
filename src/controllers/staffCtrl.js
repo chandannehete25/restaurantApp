@@ -58,3 +58,4 @@ exports.deleteStaff = (req, res) => {
       res.send("Error deleting staff");
     });
 };
+

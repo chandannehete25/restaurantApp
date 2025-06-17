@@ -16,8 +16,8 @@ function fetchAndDisplayCategories(search = "") {
               <td>${cat.id}</td>
               <td>${cat.name}</td>
               <td>
-                <a href="/editCategory/${cat.id}" class="btn btn-sm text-success">✏️</a>
-                <a href="/deleteCategory/${cat.id}" class="btn btn-sm text-danger">🗑️</a>
+                <a href="/editCategory/${cat.id}" class="btn btn-warning btn-sm me-1">Edit</a>
+                <a href="/deleteCategory/${cat.id}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
               </td>
             </tr>
           `;

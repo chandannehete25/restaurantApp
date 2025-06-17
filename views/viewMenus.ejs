@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>View Menus</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="/js/menuSearch.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -43,9 +45,8 @@
 
   <div class="main-content">
     <div class="search-box text-center">
-      <form method="GET" action="/menu/view" class="d-flex justify-content-center">
-        <input type="text" name="search" class="form-control w-50" placeholder="Search menu..." value="<%= search %>">
-        <button class="btn btn-primary ms-2" type="submit">Search</button>
+      <form id="searchForm" method="GET" action="/menu/view" class="d-flex justify-content-center">
+        <input type="text" id="searchInput" name="search" class="form-control w-50" placeholder="Search menu..." value="<%= search %>">
       </form>
     </div>
 
@@ -63,7 +64,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="menuBody">
             <% if (menus.length > 0) { %>
               <% menus.forEach(menu => { %>
                 <tr>
@@ -80,11 +81,11 @@
                 </tr>
               <% }) %>
             <% } else { %>
-              <tr>
-                <td colspan="6">No menu items found.</td>
-              </tr>
+              <tr><td colspan="6">No menu items found.</td></tr>
             <% } %>
           </tbody>
+          
+          
         </table>
       </div>
     </div>

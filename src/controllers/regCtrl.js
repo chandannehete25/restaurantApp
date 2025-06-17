@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const conn = require("../config/db");
 let RegService = require("../services/regService.js");
 const regmodel = require("../models/regModel.js");
 
@@ -17,16 +17,20 @@ exports.signInPage = (req, res) => {
   res.render("login.ejs", { msg: "" });
 };
 
+exports.staffLoginPage = (req, res) => {
+  res.render("staffLogin.ejs"); // this should point to the EJS file you posted
+}; 
 
 exports.registerUser = (req, res) => {
-  const { name, email, contact, username, password } = req.body;
+  const { name, email, contact, username, password, role } = req.body;
 
   const userData = {
     name,
     email,
     contact,
     username,
-    password 
+    password,
+    role
   };
 
   regmodel.insertUser(userData)
@@ -43,17 +47,26 @@ exports.registerUser = (req, res) => {
     });
 };
 
+
+exports.logout = (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error("Session destroy error:", err);
+      return res.status(500).send("Logout failed");
+    }
+    res.redirect("/"); // back to login page
+  });
+};
 exports.validateUser = (req, res) => {
   const { username, password } = req.body;
-  console.log("Login attempt:", username, password);
 
   regmodel.validateUserWithPassword(username, password)
     .then((result) => {
       if (result.length > 0) {
-        req.session.uid = result[0].id;       //store user ID in session
-        res.render("adminDashboard.ejs" );
+        req.session.uid = result[0].id;
+        res.render("adminDashboard.ejs");
       } else {
-        res.render("login.ejs", { msg: "Invalid username or password" });
+        res.render("login.ejs", { msg: "Invalid username/email or password" });
       }
     })
     .catch((err) => {
@@ -62,16 +75,61 @@ exports.validateUser = (req, res) => {
     });
 };
 
-exports.validateUserWithPassword = (username, password) => {
+exports.validateUserWithPassword = (userInput, password) => {
   return new Promise((resolve, reject) => {
-    const sql = "SELECT * FROM user WHERE username = ? AND password = ?";
-    conn.query(sql, [username, password], (err, result) => {
+    let sql = "";
+    let params = [];
+
+    // Check if input looks like an email
+    if (userInput.includes("@")) {
+      sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+    } else {
+      sql = "SELECT * FROM user WHERE username = ? AND password = ?";
+    }
+
+    params = [userInput, password];
+
+    conn.query(sql, params, (err, result) => {
       if (err) reject(err);
       else resolve(result);
     });
   });
 };
 
+
 exports.addCategory=(req,res)=>{
   res.render("addCat.ejs");
 }
+
+exports.staffLoginPage = (req, res) => {
+  res.render("staffLogin.ejs", { msg: "" });
+};
+
+// Validate login by email + contact number
+exports.validateStaffLogin = (req, res) => {
+  const { email, contact_no } = req.body;
+
+  const sql = "SELECT * FROM staff WHERE email = ? AND contact_no = ?";
+  conn.query(sql, [email, contact_no], (err, result) => {
+    if (err) {
+      console.error("Login Error:", err);
+      return res.render("error.ejs", { error: "Database error" });
+    }
+
+    if (result.length > 0) {
+      req.session.staffId = result[0].staff_id;
+      req.session.staffName = result[0].name;
+      res.render("staffDashboard.ejs", { staff: result[0] });
+    } else {
+      res.render("staffLogin.ejs", { msg: "Invalid email or contact number" });
+    }
+  });
+};
+exports.logout = (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.send("Logout failed");
+    }
+    res.redirect("/");
+  });
+};

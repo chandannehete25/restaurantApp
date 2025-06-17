@@ -14,6 +14,7 @@ router.post("/updateCategory", adminCtrl.updateCategory);
 // Handle delete
 router.get("/deleteCategory/:id", adminCtrl.deleteCategory);
 router.get("/api/Category/search", adminCtrl.searchCategoriesAjax);
+router.get("/admin", adminCtrl.dashboard);
 
 
 module.exports = router;
