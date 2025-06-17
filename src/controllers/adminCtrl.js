@@ -120,5 +120,10 @@ exports.searchCategoriesAjax = (req, res) => {
         res.status(500).json({ error: "Failed to fetch categories" });
       });
   };
+
+  exports.dashboard = (req, res) => {
+    res.render("adminDashboard");
+  };
+  
   
   
